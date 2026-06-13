@@ -9,30 +9,11 @@
 <meta name="theme-color" content="#10161c">
 <title>Cvakni barvu!</title>
 <style>
-  :root{
-    --bg:#10161c;
-    --bg2:#18212b;
-    --ink:#f2ede3;
-    --muted:#8a97a3;
-    --beacon:#ff8c42;
-    --glass:#59c3c3;
-  }
+  :root{--bg:#10161c;--bg2:#18212b;--ink:#f2ede3;--muted:#8a97a3;--beacon:#ff8c42;}
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
   html,body{height:100%;}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
-    background:var(--bg);
-    color:var(--ink);
-    overflow:hidden;
-    -webkit-user-select:none;user-select:none;
-    text-rendering:optimizeLegibility;
-  }
-  .home{
-    position:fixed;inset:0;
-    display:flex;flex-direction:column;align-items:center;justify-content:space-between;
-    padding:calc(env(safe-area-inset-top) + 28px) 24px calc(env(safe-area-inset-bottom) + 28px);
-    background:radial-gradient(120% 80% at 50% -10%, var(--bg2) 0%, var(--bg) 60%);
-  }
+  body{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);overflow:hidden;-webkit-user-select:none;user-select:none;}
+  .home{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:calc(env(safe-area-inset-top) + 28px) 24px calc(env(safe-area-inset-bottom) + 28px);background:radial-gradient(120% 80% at 50% -10%, var(--bg2) 0%, var(--bg) 60%);}
   .eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);text-align:center;}
   .titlewrap{text-align:center;margin-top:6px;}
   .title{font-size:clamp(38px,12vw,60px);font-weight:900;letter-spacing:-.02em;line-height:.92;text-transform:uppercase;}
@@ -55,7 +36,7 @@
   @keyframes iris{to{clip-path:circle(150% at 50% 50%);}}
   .close{align-self:flex-end;width:44px;height:44px;border-radius:50%;border:1.5px solid currentColor;background:transparent;color:inherit;font-size:22px;font-weight:600;line-height:1;cursor:pointer;opacity:.65;}
   .center{text-align:center;}
-  .clabel{font-size:clamp(40px,13vw,64px);font-weight:900;letter-spacing:-.02em;line-height:1;}
+  .clabel{font-size:clamp(36px,12vw,60px);font-weight:900;letter-spacing:-.02em;line-height:1;}
   .chex{margin-top:12px;font-size:15px;letter-spacing:.28em;font-weight:700;opacity:.7;text-transform:uppercase;}
   .task{margin-top:26px;font-size:18px;line-height:1.45;font-weight:600;max-width:300px;margin-left:auto;margin-right:auto;opacity:.85;}
   .actions{width:100%;max-width:380px;display:flex;flex-direction:column;gap:12px;}
@@ -78,10 +59,7 @@
       </div>
     </div>
     <button class="shutter" id="shutterBtn" aria-label="Vygenerovat barvu">
-      <span class="pulse"></span>
-      <span class="ring"></span>
-      <span class="ring r2"></span>
-      <span class="ring r3"></span>
+      <span class="pulse"></span><span class="ring"></span><span class="ring r2"></span><span class="ring r3"></span>
       <span class="lens"><span>Cvak</span></span>
     </button>
     <div class="stat">Ulovené barvy: <b id="score">0</b></div>
@@ -100,70 +78,60 @@
   </section>
 <script>
   const COLORS = [
-    ["Námořnická modř","#1f3a5f"],["Rezavá oranžová","#b7410e"],["Mechová zelená","#6b8e3a"],
-    ["Pískově béžová","#d8c39a"],["Korálová","#ff6f61"],["Hořčicová žlutá","#e1ad01"],
-    ["Tyrkysová","#1abc9c"],["Vínová","#722f37"],["Levandulová","#b497bd"],
-    ["Cihlová","#a64b2a"],["Olivová","#708238"],["Břidlicově šedá","#5b6670"],
-    ["Malinová","#c72c48"],["Petrolejová","#015d52"],["Okrová","#cc7722"],
-    ["Mátová","#98ddca"],["Indigová","#4b3fa0"],["Lososová","#fa8072"],
-    ["Smaragdová","#2ecc71"],["Karmínová","#d0103a"],["Šeříková","#c8a2c8"],
-    ["Měděná","#b87333"],["Azurová","#1f8fff"],["Terakotová","#c66b3d"],
-    ["Kanárkově žlutá","#ffd400"],["Borůvková","#4f86f7"],["Pomerančová","#ff7f00"],
-    ["Limetková","#9acd32"],["Bordó","#6e2018"],["Khaki","#b6a878"],
-    ["Mořská zeleň","#2e8b57"],["Růžová žvýkačka","#ff77a9"],["Královská modř","#3a5fdd"],
-    ["Cyklámenová","#e4007c"],["Pistáciová","#93c572"],["Meruňková","#fbb37a"],
-    ["Slámová","#e4d96f"],["Bronzová","#cd7f32"],["Šedomodrá","#6699cc"],
+    ["Červená","#e8000d"],["Modrá","#0050ef"],["Žlutá","#ffd800"],["Zelená","#1ca641"],
+    ["Oranžová","#ff7900"],["Fialová","#8a2be2"],["Růžová","#ff66b3"],["Hnědá","#6b4226"],
+    ["Černá","#1a1a1a"],["Bílá","#f5f5f5"],["Šedá","#8a8a8a"],["Námořnická modř","#1f3a5f"],
+    ["Rezavá oranžová","#b7410e"],["Mechová zelená","#6b8e3a"],["Pískově béžová","#d8c39a"],
+    ["Korálová","#ff6f61"],["Hořčicová žlutá","#e1ad01"],["Tyrkysová","#1abc9c"],
+    ["Vínová","#722f37"],["Levandulová","#b497bd"],["Cihlová","#a64b2a"],["Olivová","#708238"],
+    ["Břidlicově šedá","#5b6670"],["Malinová","#c72c48"],["Petrolejová","#015d52"],
+    ["Okrová","#cc7722"],["Mátová","#98ddca"],["Indigová","#4b3fa0"],["Lososová","#fa8072"],
+    ["Smaragdová","#2ecc71"],["Karmínová","#d0103a"],["Šeříková","#c8a2c8"],["Měděná","#b87333"],
+    ["Azurová","#1f8fff"],["Terakotová","#c66b3d"],["Kanárkově žlutá","#ffd400"],
+    ["Borůvková","#4f86f7"],["Pomerančová","#ff7f00"],["Limetková","#9acd32"],["Bordó","#6e2018"],
+    ["Khaki","#b6a878"],["Mořská zeleň","#2e8b57"],["Růžová žvýkačka","#ff77a9"],
+    ["Královská modř","#3a5fdd"],["Cyklámenová","#e4007c"],["Pistáciová","#93c572"],
+    ["Meruňková","#fbb37a"],["Slámová","#e4d96f"],["Bronzová","#cd7f32"],["Šedomodrá","#6699cc"],
     ["Karamelová","#c68e17"],["Lila fialová","#9b59b6"],["Cínová","#8a9a9a"],
     ["Korálově růžová","#f88379"],["Mořská pěna","#cfe8e0"],["Tmavě fialová","#5b2a86"],
     ["Čokoládová","#5a3a22"],["Antické zlato","#d4af37"],["Broskvová","#ffcba4"],
     ["Jehličnatě zelená","#1d4d2b"],["Hasičská červená","#ce2029"],["Nebeská modř","#87ceeb"],
     ["Šalvějová","#9caf88"],["Tmavě hnědá","#4b3621"],["Korková","#bd8c61"],
-    ["Modrozelená","#008080"],["Orchidejová","#da70d6"],["Asfaltová šedá","#3d4248"]
+    ["Modrozelená","#008080"],["Orchidejová","#da70d6"],["Asfaltová šedá","#3d4248"],
+    ["Purpurová","#800080"],["Limetkově zelená","#32cd32"],["Tyrkysově modrá","#00ced1"],
+    ["Rumělková","#e34234"],["Slonová kost","#efe9d6"],["Krémová","#f3e5ab"],["Zlatá","#ffbf00"],
+    ["Stříbrná","#c0c0c0"],["Uhlově černá","#2b2b2b"],["Holubí šedá","#9a9aa0"],
+    ["Antracitová","#383e42"],["Mandlová","#eaddca"],["Pšeničná","#e4cd9e"],
+    ["Hořká čokoláda","#3c2415"],["Tmavě karmínová","#960018"],["Rubínová","#9b111e"],
+    ["Starorůžová","#c08081"],["Fuchsiová","#ff1493"],["Švestková","#843179"],
+    ["Lilková","#4c2c43"],["Mořská modř","#006994"],["Smaragdově zelená","#06c2ac"],
+    ["Jadeitová","#00a86b"],["Trávově zelená","#4f9b2f"],["Citronová","#fde910"],
+    ["Jantarová","#ff9f00"],["Patinová","#43a08c"],["Tmavě hořčicová","#a07e00"],
+    ["Lazurová","#1e90ff"],["Ultramarínová","#3f3fff"],["Pomněnková","#a1caf1"],
+    ["Bramborová béžová","#cdb79e"]
   ];
   const $ = id => document.getElementById(id);
-  let last = -1;
-  let score = 0;
+  let last = -1, score = 0;
   try { score = parseInt(localStorage.getItem("cb_score") || "0", 10) || 0; } catch(e){}
   $("score").textContent = score;
   function saveScore(){ try { localStorage.setItem("cb_score", String(score)); } catch(e){} }
-  function pickColor(){
-    let i;
-    do { i = Math.floor(Math.random()*COLORS.length); } while (i === last && COLORS.length>1);
-    last = i;
-    return COLORS[i];
-  }
-  function isDark(hex){
-    const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
-    const L = (0.299*r + 0.587*g + 0.114*b)/255;
-    return L > 0.6;
-  }
+  function pickColor(){ let i; do { i = Math.floor(Math.random()*COLORS.length); } while (i === last && COLORS.length>1); last = i; return COLORS[i]; }
+  function isDark(hex){ const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16); return (0.299*r+0.587*g+0.114*b)/255 > 0.6; }
   function showColor(){
-    const [name,hex] = pickColor();
-    const rev = $("reveal");
+    const [name,hex] = pickColor(); const rev = $("reveal");
     rev.style.background = hex;
-    rev.classList.toggle("dark", isDark(hex));
-    rev.classList.toggle("light", !isDark(hex));
-    $("clabel").textContent = name;
-    $("chex").textContent = hex.toUpperCase();
-    $("home").style.display = "none";
-    rev.classList.add("on");
+    rev.classList.toggle("dark", isDark(hex)); rev.classList.toggle("light", !isDark(hex));
+    $("clabel").textContent = name; $("chex").textContent = hex.toUpperCase();
+    $("home").style.display = "none"; rev.classList.add("on");
     rev.classList.remove("animate"); void rev.offsetWidth; rev.classList.add("animate");
     if (navigator.vibrate) navigator.vibrate(15);
   }
-  function backHome(){
-    $("reveal").classList.remove("on","animate");
-    $("home").style.display = "flex";
-  }
+  function backHome(){ $("reveal").classList.remove("on","animate"); $("home").style.display = "flex"; }
   $("shutterBtn").addEventListener("click", showColor);
   $("againBtn").addEventListener("click", showColor);
   $("closeBtn").addEventListener("click", backHome);
-  $("gotBtn").addEventListener("click", () => {
-    score++; $("score").textContent = score; saveScore();
-    if (navigator.vibrate) navigator.vibrate([20,40,20]);
-    showColor();
-  });
+  $("gotBtn").addEventListener("click", () => { score++; $("score").textContent = score; saveScore(); if (navigator.vibrate) navigator.vibrate([20,40,20]); showColor(); });
   document.addEventListener("gesturestart", e => e.preventDefault());
 </script>
 </body>
 </html>
-
